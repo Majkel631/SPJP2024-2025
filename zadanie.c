@@ -31,5 +31,34 @@ int main()
          default:
          printf("something went wrong");
     }
+
+
+#include <stdio.h>
+
+int main()
+{
+   
+    double first ;
+    double second ;
+
+    printf("write Number ");
+    scanf("%lf",&first);
+    printf("write second Number ");
+    scanf("%lf",&second);
+   
+    
+    if(first == second){
+        printf("\n Number have yhe same value");
+    }
+    else if(first > second){
+        printf("%lf",first);
+    }else if(first < second){
+        printf("%ls\f",second);
+        
+    }
+   
+    }
+ 
+
   
        
