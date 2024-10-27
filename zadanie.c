@@ -97,7 +97,33 @@ int main()
          printf("\n Last Number  Have yhe bigger value");    }
    
     }
+
+
+Zadanie 6
+
+
+#include <stdio.h>
+
+int main()
+{
+   
+    int first ;
  
+
+
+    printf("write Year  ");
+    scanf("%d",&first);
+    
+    if(first / 4 ){
+        printf("year  is accesible");
+    }else {
+        printf("year is not a accesible");
+    }
+    
+    
+}
+ 
+
  
 
   
