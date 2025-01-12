@@ -1,128 +1,63 @@
+// Online C compiler to run C program online
 #include <stdio.h>
 
-int main()
-{
-Zadanie 1
-    printf("Hello World");
- 
-
-Zadanie 2
-    double first ;
-    double second ;
+int main() {
+    
+    
+        // Tworzymy tablicę o stałej wielkości 10
+    int liczba, i;
+    int n = 20;
+    int tablica[22] ={1,2,3,4,5,6,7,8,9,0,10,11,12,13,14,15,16,17,18,19,20};
     char op;
-
-    printf("Select a operator(+,-,*,/):");
-    scanf("%c",&op);
-    printf("write Number");
-    scanf("%lf",&first);
-    printf("write second Number");
-    scanf("%lf",&second);
+    printf("\n choose something\n");
+    scanf(" %c", &op);
     switch(op){
-        case '+':
-        printf("%lf",first + second);
+       case 'e':
+       printf("program end successfuly");
+       break;
+       case 'w':
+         for (int i =0; i<= 20;i ++){
+             printf("%d",tablica[i]);
+         }
         break;
-        case '-':
-         printf("%lf",first - second);
-         break;
-           case '*':
-         printf("%lf",first * second);
-         break;
-           case '/':
-         printf("%lf",first / second);
-         break;
-         default:
-         printf("something went wrong");
+        case '0':
+        printf("error");
+        case 'd':{
+           
+    printf("ddaj liczbe do tablicy:\n");
+    for (i = 0; i < 1; i++) {
+        scanf("%d", &liczba);
+        tablica[i] = liczba;
     }
-
-Zadanie 3
-#include <stdio.h>
-
-int main()
-{
-   
-    double first ;
-    double second ;
-
-    printf("write Number ");
-    scanf("%lf",&first);
-    printf("write second Number ");
-    scanf("%lf",&second);
-   
-    
-    if(first == second){
-        printf("\n Number have yhe same value");
+    // Wyświetlamy wprowadzone liczby
+    printf("\nWprowadzone liczby to:\n");
+    for (i = 0; i < 20; i++) {
+        printf("%d ", tablica[i]);
     }
-    else if(first > second){
-        printf("%lf",first);
-    }else if(first < second){
-        printf("%ls\f",second);
-        
+       break; }
+        case 'D':{
+           for (i = 0; i < 2; i++) {
+        scanf("%d", &liczba);
+        tablica[i] = liczba;
     }
-   
+    printf("\nWprowadzone liczby to:\n");
+    for (i = 0; i < 20; i++) {
+        printf("%d ", tablica[i]);
+    };
+        break;
+        }
+        case 'u': {
+            printf("d");
+        }case 's':{
+            printf("delete number from list");
+           for (int i =0; i<= 20;i ++){
+             printf("\n %d",tablica[i]);
+         }break;
+       
+        }
+    }  
+     return 0;
     }
-
-
-Zadanie 4
-#include <stdio.h>
-
-int main()
-{
-   
-    double first ;
-    double second ;
-        double last ;
-
-
-    printf("write Number ");
-    scanf("%lf",&first);
-    printf("write second Number ");
-    scanf("%lf",&second);
-    printf("write Last Number");
-    scanf("%lf",&last);
-   
-    
-    if(first == second && second == last){
-        printf("\n Number have the same value");
-    }
-    else if(first > second && last){
-        printf("%lf",first  );
-         printf("\n First Have yhe bigger value");
-    
-    }else if(second > first && last){
-        printf("%lf",second  );
-         printf("\n Second Have yhe bigger value");
-    }
-    else if(last > first && second){
-          printf("%lf",last  );
-         printf("\n Last Number  Have yhe bigger value");    }
-   
-    }
-
-
-Zadanie 6
-
-
-#include <stdio.h>
-
-int main()
-{
-   
-    int first ;
- 
-
-
-    printf("write Year  ");
-    scanf("%d",&first);
-    
-    if(first / 4 ){
-        printf("year  is accesible");
-    }else {
-        printf("year is not a accesible");
-    }
-    
-    
-}
- 
 
  
 
