@@ -1,0 +1,4 @@
+data,region,temp_min,temp_max,temp_srednia,opady,zachmurzenie
+2024-07-01,Karpaty,12,22,17,2.0,20
+2024-07-01,Podlasie,14,25,19,600,10
+2024-07-01,Tatry,-5,15,10,1250,20
