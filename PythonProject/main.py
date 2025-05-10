@@ -1,43 +1,30 @@
-from moduly.loader import wczytaj_csv
-from moduly.filtracja import filtruj_trasy
-from moduly.statystyki import srednia_temp, suma_opadow, liczba_dni_slonecznych
+from data_handlers.route_manager import RouteDataManager
+from data_handlers.weather_manager import WeatherDataManager
+from models.preferences import UserPreference
+from recommenders.route_recommender import RouteRecommender
+from ui.user_interface import UserInterface
 
-def pogoda_dla_regionu(pogoda, region):
-    return list(filter(lambda d: d['region'] == region, pogoda))
+if __name__ == "__main__":
+    user_date = input("Podaj datę (YYYY-MM-DD): ").strip()
 
-# Wczytanie danych
-trasy = wczytaj_csv('dane/trasy.csv')
-pogoda = wczytaj_csv('dane/pogoda.csv')
+    route_mgr = RouteDataManager("data/routes/routes.csv")
+    weather_mgr = WeatherDataManager("data/weather/weather.csv")
 
-# --- Interaktywny wybór regionu ---
-dostepne_regiony = sorted(set(trasa['region'] for trasa in trasy))
+    weather_for_day = weather_mgr.get_weather_by_date(user_date)
+    if not weather_for_day:
+        print(f"Brak danych pogodowych dla daty: {user_date}")
+        exit()
 
-print("Dostępne regiony tras:")
-for r in dostepne_regiony:
-    print(f" - {r}")
+    prefs_raw = UserInterface.get_preferences()
+    preferences = UserPreference(**prefs_raw)
 
-region_docelowy = input("\nWpisz nazwę regionu, który Cię interesuje: ").strip()
+    recommender = RouteRecommender(route_mgr.routes, weather_mgr.weather, preferences)
+    results = recommender.recommend(user_date)
 
-if region_docelowy not in dostepne_regiony:
-    print(" Podany region nie istnieje w danych.")
-else:
-    # --- Trasy w regionie ---
-    wybrane_trasy = filtruj_trasy(trasy, region=region_docelowy)
-    print(f"\n✅ Wybrane trasy w regionie: {region_docelowy}")
-    for t in wybrane_trasy:
-        print(f"""
-        • Nazwa: {t['nazwa']}
-        • Długość: {t['dlugosc_km']} km
-        • Trudność: {t['trudnosc']}
-        • Przewyższenie: {t['przewyzszenie']} m
-        • Teren: {t['teren']}
-        • Lokalizacja: {t.get('lokalizacja', 'brak danych')}
-        """)
+    UserInterface.show_recommendations(results, user_date)
+    results = recommender.recommend(user_date)
 
-    # --- Pogoda dla regionu ---
-    pogoda_region = pogoda_dla_regionu(pogoda, region_docelowy)
-
-    print(f"\n📊 Statystyki pogodowe dla regionu: {region_docelowy}")
-    print(f"Średnia temperatura: {srednia_temp(pogoda_region):.2f}°C")
-    print(f"Suma opadów: {suma_opadow(pogoda_region):.2f} mm")
-    print(f"Liczba dni słonecznych: {liczba_dni_slonecznych(pogoda_region)} dni")
+    if not results:
+        print(f"Brak pasujących tras dla daty {user_date} z pożądanymi prefernacjami ")
+    else:
+        UserInterface.show_recommendations(results, user_date)
