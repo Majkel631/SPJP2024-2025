@@ -1,0 +1,19 @@
+{
+  "input_dir": "./input_data",
+  "output_dir": "./output_data",
+  "overwrite_output": true,
+  "generate_report_plot": true,
+  "transformations": {
+    "file1.txt": [
+      { "action": "strip" },
+      { "action": "lowercase" }
+    ],
+    "file2.txt": [
+      { "action": "strip" },
+      { "action": "lowercase" }
+    ],
+    "bad_file.txt": [
+      { "action": "cause_error" }
+    ]
+  }
+}
